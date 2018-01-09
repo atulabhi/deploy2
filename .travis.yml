@@ -13,7 +13,7 @@ env:
   - DOCKER_IMAGE_NAME=avneetsingh/travis
   - KUBE_DEPLOYMENT_NAME=openebs
   - KUBE_DEPLOYMENT_CONTAINER_NAME=openebs
-  - NODE_ENV=CI
+  #- NODE_ENV=CI
   - PATH=$PATH:${HOME}/google-cloud-sdk/bin
 dist: trusty
 sudo: false
