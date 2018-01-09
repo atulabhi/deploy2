@@ -26,6 +26,7 @@ before_script:
 - gcloud --quiet version
 - gcloud --quiet components update
 script:
+- gcloud components update kubectl
 - gcloud auth activate-service-account --key-file "${GOOGLE_APPLICATION_CREDENTIALS}"
 - kubectl apply -f config/stage-openebs.yaml
 notifications:
