@@ -6,14 +6,13 @@ cache:
   - "$HOME/google-cloud-sdk/"
 env:
   global:
-  - GOOGLE_APPLICATION_CREDENTIALS="${PWD}/gcloud-service-key.json"
+  - GOOGLE_APPLICATION_CREDENTIALS="${PWD}/client-secret.json"
   - PROJECT_NAME_STG=K8s-Demo
   - CLUSTER_NAME_STG=flux-baremetal-cluster
   - CLOUDSDK_COMPUTE_ZONE=us-central1-a
   - DOCKER_IMAGE_NAME=avneetsingh/travis
   - KUBE_DEPLOYMENT_NAME=openebs
   - KUBE_DEPLOYMENT_CONTAINER_NAME=openebs
-  #- NODE_ENV=CI
   - PATH=$PATH:${HOME}/google-cloud-sdk/bin
 dist: trusty
 sudo: false
@@ -27,8 +26,6 @@ before_script:
 - gcloud --quiet version
 - gcloud --quiet components update
 script:
-- echo ${PWD}
-- sudo chmod -R ugo+rw ${PWD}/gcloud-service-key.json
 - gcloud auth activate-service-account --key-file "${GOOGLE_APPLICATION_CREDENTIALS}"
 - kubectl apply -f config/stage-openebs.yaml
 notifications:
