@@ -25,8 +25,9 @@ before_script:
 - source /home/travis/google-cloud-sdk/path.bash.inc
 - gcloud --quiet version
 - gcloud --quiet components update
+- gcloud --quiet components update kubectl
 script:
-- gcloud components update kubectl
+#- gcloud components update kubectl
 - gcloud auth activate-service-account --key-file "${GOOGLE_APPLICATION_CREDENTIALS}"
 - kubectl apply -f config/stage-openebs.yaml
 notifications:
