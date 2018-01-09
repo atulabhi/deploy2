@@ -1,42 +1,38 @@
-#group: deprecated-2017Q2
 filter_secrets: false
 language: node_js
 node_js: stable
 cache:
   directories:
-    - "$HOME/google-cloud-sdk/"
+  - "$HOME/google-cloud-sdk/"
 env:
-    global:
-    - PATH=$PATH:$HOME/google-cloud-sdk/bin
-    - PROJECT_ID="softserve-demo"
-    - ZONE="us-central1-a"
-    - IMAGE_NAME=demo:latest
-    - FULL_IMAGE_NAME=gcr.io/$strong-eon-153112/$travis
-    - GOOGLE_APPLICATION_CREDENTIALS="${PWD}/client-secret.json"
-    - CLUSTER_NAME=flux-baremetal-cluster
+  global:
+  - GOOGLE_APPLICATION_CREDENTIALS="${PWD}/gcloud-service-key.json"
+  - PROJECT_NAME_STG=K8s-Demo
+  - CLUSTER_NAME_STG=flux-baremetal-cluster
+  - CLOUDSDK_COMPUTE_ZONE=us-central1-a
+  - DOCKER_IMAGE_NAME=avneetsingh/travis
+  - KUBE_DEPLOYMENT_NAME=openebs
+  - KUBE_DEPLOYMENT_CONTAINER_NAME=openebs
+  - NODE_ENV=CI
+  - PATH=$PATH:${HOME}/google-cloud-sdk/bin
 dist: trusty
 sudo: false
 services:
-  - docker
-before_install:
-  - openssl aes-256-cbc -K $encrypted_4cb330591e04_key -iv $encrypted_4cb330591e04_iv  -in client-secret.json.enc -out client-secret.json -d 
+- docker
 before_script:
-  - gcloud version || true
-  - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then 
-     rm -rf $HOME/google-cloud-sdk; 
-     export CLOUDSDK_CORE_DISABLE_PROMPTS=1; 
-     curl https://sdk.cloud.google.com | bash; 
-    fi
-  - source /home/travis/google-cloud-sdk/path.bash.inc
-  - gcloud --quiet version
-  - gcloud --quiet components update
+- gcloud version || true
+- if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; export
+  CLOUDSDK_CORE_DISABLE_PROMPTS=1; curl https://sdk.cloud.google.com | bash; fi
+- source /home/travis/google-cloud-sdk/path.bash.inc
+- gcloud --quiet version
+- gcloud --quiet components update
 script:
-  - gcloud components update kubectl
-  - gcloud auth activate-service-account --key-file "${GOOGLE_APPLICATION_CREDENTIALS}"
-  - gcloud config set project $strong-eon-153112
-  - gcloud config set compute/zone $ZONE
-  - kubectl apply -f config/stage-openebs.yaml
- 
+- echo ${PWD}
+- sudo chmod -R ugo+rw ${PWD}/gcloud-service-key.json
+- gcloud auth activate-service-account --key-file "${GOOGLE_APPLICATION_CREDENTIALS}"
+- kubectl apply -f config/stage-openebs.yaml
 notifications:
-  email:
-    -atul.abhishek@openebs.io
+  email: "-atul.abhishek@openebs.io"
+before_install:
+- openssl aes-256-cbc -K $encrypted_1c66bdd57eb0_key -iv $encrypted_1c66bdd57eb0_iv
+  -in client-secret.json.enc -out client-secret.json -d
