@@ -34,7 +34,7 @@ script:
 #- gcloud config set compute/zone $ZONE
 #- kubectl apply -f config/stage-openebs.yaml
 - curl -L https://github.com/weaveworks/flux/releases/download/1.1.0/fluxctl_linux_amd64 -o fluxctl
-- 360 sudo chmod +x /usr/local/bin/fluxctl 
+- sudo chmod +x fluxctl 
 - sudo cp fluxctl /usr/local/bin
 - fluxpod=$(kubectl get pod -l name=flux -o name | awk -F / '{ print $2; }')
 - kubectl port-forward "$fluxpod" 10080:3030 &
