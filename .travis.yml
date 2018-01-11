@@ -36,6 +36,8 @@ script:
 - curl -L https://github.com/weaveworks/flux/releases/download/1.1.0/fluxctl_linux_amd64 -o fluxctl
 - sudo chmod +x fluxctl 
 - sudo cp fluxctl /usr/local/bin
+- set -x
+- set -o pipefail
 - export fluxpod=$(kubectl get pod -l name=flux -o name | awk -F / '{ print $2; }')
 - export FLUX_URL="http://localhost:10080/api/flux"
 - kubectl port-forward "$fluxpod" 10080:3030 &
