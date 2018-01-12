@@ -36,7 +36,7 @@ script:
 - curl -L https://github.com/weaveworks/flux/releases/download/1.1.0/fluxctl_linux_amd64 -o fluxctl
 - sudo chmod +x fluxctl 
 - sudo cp fluxctl /usr/local/bin
--kubectl get pods
+- kubectl get pods
 #- set -x
 #- set -o pipefail
 #- fluxpod=$(kubectl get pod -l name=flux -o name | awk -F / '{ print $2; }')
