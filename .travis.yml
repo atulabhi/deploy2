@@ -44,7 +44,7 @@ script:
 #- fluxctl release --controller=default:deployment/stage-openebs --update-image=avneetsingh/openebs-website:c1f778
 - fluxpod=$(kubectl get pod -l name=flux -o name | awk -F / '{ print $2; }')
 -  kubectl port-forward "$fluxpod" 10080:3030 &
-  export FLUX_URL="http://localhost:10080/api/flux"
+  export FLUX_URL="http://localhost:10080/api/flux" &
   fluxctl release --controller=default:deployment/stage-openebs --update-image=avneetsingh/openebs-website:6a8db0
 notifications:
   email: "-atul.abhishek@openebs.io"
