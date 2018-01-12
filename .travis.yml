@@ -36,16 +36,17 @@ script:
 - curl -L https://github.com/weaveworks/flux/releases/download/1.1.0/fluxctl_linux_amd64 -o fluxctl
 - sudo chmod +x fluxctl 
 - sudo cp fluxctl /usr/local/bin
+-kubectl get pods
 #- set -x
 #- set -o pipefail
 #- fluxpod=$(kubectl get pod -l name=flux -o name | awk -F / '{ print $2; }')
 #- export FLUX_URL="http://localhost:10080/api/flux"
 #- kubectl port-forward "$fluxpod" 10080:3030 &
 #- fluxctl release --controller=default:deployment/stage-openebs --update-image=avneetsingh/openebs-website:c1f778
-- fluxpod=$(kubectl get pod -l name=flux -o name | awk -F / '{ print $2; }')
-- export FLUX_URL="http://localhost:10080/api/flux" 
--  kubectl port-forward "$fluxpod" 10080:3030 &
-   fluxctl release --controller=default:deployment/stage-openebs --update-image=avneetsingh/openebs-website:6a8db0
+#- fluxpod=$(kubectl get pod -l name=flux -o name | awk -F / '{ print $2; }')
+#- export FLUX_URL="http://localhost:10080/api/flux" 
+#-  kubectl port-forward "$fluxpod" 10080:3030 &
+#   fluxctl release --controller=default:deployment/stage-openebs --update-image=avneetsingh/openebs-website:6a8db0
 notifications:
   email: "-atul.abhishek@openebs.io"
 before_install:
