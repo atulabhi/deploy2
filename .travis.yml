@@ -42,7 +42,7 @@ script:
 - fluxpod=$(kubectl get pod -l name=flux -o name | awk -F / '{ print $2; }')
 - echo $fluxpod
 - export FLUX_URL="http://localhost:10080/api/flux"
-- bash -c "kubectl port-forward "$fluxpod" 10080:3030 & fluxctl release --controller=default:deployment/stage-openebs --update-image=avneetsingh/openebs-website:c1f778"
+- kubectl port-forward "$fluxpod" 10080:3030;fluxctl release --controller=default:deployment/stage-openebs --update-image=avneetsingh/openebs-website:c1f778
 #- fluxctl release --controller=default:deployment/stage-openebs --update-image=avneetsingh/openebs-website:c1f778
 
 #- kubectl port-forward "$fluxpod" 10080:3030 & bash -c fluxctl release --controller=default:deployment/stage-openebs --update-image=avneetsingh/openebs-website:c1f778
