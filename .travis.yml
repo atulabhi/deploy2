@@ -41,7 +41,7 @@ script:
 - fluxpod=$(kubectl get pod -l name=flux -o name | awk -F / '{ print $2; }')
 - export FLUX_URL="http://localhost:10080/api/flux"
 - kubectl port-forward "$fluxpod" 10080:3030 &
-- fluxctl list-controllers 
+- fluxctl --help 
 notifications:
   email: "-atul.abhishek@openebs.io"
 before_install:
