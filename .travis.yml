@@ -55,7 +55,7 @@ script:
 #-  kubectl port-forward "$fluxpod" 10080:3030 &
 #   fluxctl release --controller=default:deployment/stage-openebs --update-image=avneetsingh/openebs-website:6a8db0
 after_script:
-- trigger-dependent-build.sh
+- ./trigger-dependent-build
 notifications:
   email: "-atul.abhishek@openebs.io"
 before_install:
