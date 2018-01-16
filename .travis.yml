@@ -60,7 +60,7 @@ jobs:
        - echo $fluxpod
        - export FLUX_URL="http://localhost:10080/api/flux"
        - bash -c "kubectl port-forward $fluxpod 10080:3030" & sleep 10
-       - bash -c "fluxctl release --controller=default:deployment/stage-openebs --update-image=avneetsingh/openebs-website:c1f778"
+       - bash -c "fluxctl release --controller=default:deployment/stage-openebs --update-image=avneetsingh/openebs-website:$COMMIT"
 after_script:
   - ./trigger-dependent-build
 notifications:
