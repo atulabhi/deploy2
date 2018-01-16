@@ -1,19 +1,7 @@
-filter_secrets: false
 language: node_js
 node_js: stable
-cache:
-  directories:
-  - "$HOME/google-cloud-sdk/"
 env:
   global:
-  - GOOGLE_APPLICATION_CREDENTIALS="${PWD}/client-secret.json"
-  - PROJECT_NAME_STG=K8s-Demo
-  - CLUSTER_NAME_STG=flux-baremetal-cluster
-  - CLOUDSDK_COMPUTE_ZONE=us-central1-a
-  - DOCKER_IMAGE_NAME=avneetsingh/travis
-  - KUBE_DEPLOYMENT_NAME=openebs
-  - KUBE_DEPLOYMENT_CONTAINER_NAME=openebs
-  - PATH=$PATH:${HOME}/google-cloud-sdk/bin
   - COMMIT=${TRAVIS_COMMIT::6}
 before_install:
   - stty cols 80
@@ -29,42 +17,16 @@ addons:
     packages:
     - google-chrome-stable fluxbox
 before_script:
-  - gcloud version || true
-  - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; export
-    CLOUDSDK_CORE_DISABLE_PROMPTS=1; curl https://sdk.cloud.google.com | bash; fi
-  - source /home/travis/google-cloud-sdk/path.bash.inc
-  - gcloud --quiet version
-  - gcloud --quiet components update
-  - gcloud --quiet components update kubectl
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - sleep 3
-  - fluxbox >/dev/null 2>&1 &
-jobs:
-  include:
-    - stage: build
-      script: 
-       - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then export REPO=avneetsingh/openebs-website;
-         cd openebs_pro;
-         docker login -u "$DOCKER_USER" -p "$DOCKER_PASS" && docker build -t $REPO:$COMMIT . && docker push $REPO; 
-         fi
-    - stage: deploy
-      script:
-       - gcloud auth activate-service-account --key-file "${GOOGLE_APPLICATION_CREDENTIALS}"
-       - gcloud container clusters get-credentials flux-baremetal-cluster --zone us-central1-a --project strong-eon-153112
-       - curl -L https://github.com/weaveworks/flux/releases/download/1.1.0/fluxctl_linux_amd64 -o fluxctl
-       - sudo chmod +x fluxctl 
-       - sudo cp fluxctl /usr/local/bin
-       - kubectl get pods
-       - fluxpod=$(kubectl get pod -l name=flux -o name | awk -F / '{ print $2; }')
-       - echo $fluxpod
-       - export FLUX_URL="http://localhost:10080/api/flux"
-       - bash -c "kubectl port-forward $fluxpod 10080:3030" & sleep 10
-       - bash -c "fluxctl release --controller=default:deployment/stage-openebs --update-image=avneetsingh/openebs-website:$COMMIT"
-after_script:
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- sleep 3
+- fluxbox >/dev/null 2>&1 &
+after_success:
+  - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then export REPO=avneetsingh/openebs-website;
+        cd openebs_pro;
+        docker login -u "$DOCKER_USER" -p "$DOCKER_PASS" && docker build -t $REPO:$COMMIT . && docker push $REPO; 
+    fi
+  - ./deploy
   - ./trigger-dependent-build
 notifications:
-  email: "-atul.abhishek@openebs.io"
-before_install:
-- openssl aes-256-cbc -K $encrypted_1c66bdd57eb0_key -iv $encrypted_1c66bdd57eb0_iv
-  -in client-secret.json.enc -out client-secret.json -d
+  email:
