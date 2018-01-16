@@ -5,6 +5,8 @@ env:
   - COMMIT=${TRAVIS_COMMIT::6}
 before_install:
   - stty cols 80
+  - openssl aes-256-cbc -K $encrypted_1c66bdd57eb0_key -iv $encrypted_1c66bdd57eb0_iv
+    -in client-secret.json.enc -out client-secret.json -d
 dist: trusty
 sudo: required
 services:
