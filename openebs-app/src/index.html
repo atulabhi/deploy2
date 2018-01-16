@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>OpenEBS</title>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="OpenEBS">
+    <meta name="keywords" content="">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/fav/favicon.ico">
+    <link rel="apple-touch-icon" sizes="60x60" href="assets/images/fav/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/images/fav/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/images/fav/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/images/fav/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/images/fav/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/images/fav/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/images/fav/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="assets/images/fav/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/fav/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="assets/images/fav/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="assets/images/fav/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="assets/images/fav/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="assets/images/fav/android-chrome-192x192.png" sizes="192x192">
+    <meta name="msapplication-square70x70logo" content="assets/images/fav/smalltile.png" />
+    <meta name="msapplication-square150x150logo" content="assets/images/fav/mediumtile.png" />
+    <meta name="msapplication-wide310x150logo" content="assets/images/fav/widetile.png" />
+    <meta name="msapplication-square310x310logo" content="assets/images/fav/largetile.png" />
+
+    <!-- Schema.org markup for Google+ -->
+    <meta itemprop="name" content="OpenEBS">
+    <meta itemprop="description" content="OpenEBS is a container native, open source project for containerized storage for containers.">
+    <meta itemprop="image" content="">
+
+    <!-- <meta name="robots" content="noindex" /> -->
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="Summary_large_image">
+    <meta name="twitter:site" content="@openebs">
+    <meta name="twitter:title" content="OpenEBS">
+    <meta name="twitter:description" content="OpenEBS is a container native, open source project for containerized storage for containers.">
+    <meta name="twitter:creator" content="@openebs">
+    <!-- Twitter summary card with large image must be at least 280x150px -->
+    <meta name="twitter:image" content="">
+
+
+    <meta prefix="og: http://ogp.me/ns#" property="og:url" content="http://www.openebs.io/" />
+    <meta prefix="og: http://ogp.me/ns#" property="og:type" content="article" />
+    <meta prefix="og: http://ogp.me/ns#" property="og:title" content="OpenEBS" />
+    <meta prefix="og: http://ogp.me/ns#" property="og:description" content="OpenEBS is a container native, open source project for containerized storage for containers." />
+    <meta prefix="og: http://ogp.me/ns#" property="og:image" content="" />
+
+
+
+    <link src="https://minio.io/fonts/mark/Mark-Light.woff">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.bundle.min.js"></script>
+
+    <link href="https://openebs.io/styles/css/contri.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- <script src="https://openebs.io/styles/js/conti.js"></script> -->
+    <!-- <script src="src/assets/js/conti.js"></script> -->
+</head>
+
+<body>
+    <app-root></app-root>
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script type="text/javascript">
+        (function(a) {
+            var b = a.onload,
+                p = true;
+            isCaptcha = false;
+            if (p) {
+                a.onload = "function" != typeof b ? function() {
+                    try {
+                        _agile_load_form_fields()
+                    } catch (a) {}
+                } : function() {
+                    b();
+                    try {
+                        _agile_load_form_fields()
+                    } catch (a) {}
+                }
+            };
+            var formLen = document.forms.length;
+            for (i = 0; i < formLen; i++) {
+                if (document.forms.item(i).getAttribute("id") == "agile-form") {
+                    a.document.forms.item(i).onsubmit = function(a) {
+                        a.preventDefault();
+                        try {
+                            _agile_synch_form_v5(this)
+                        } catch (b) {
+                            this.submit()
+                        }
+                    }
+                }
+            }
+        })(window);
+    </script>
+    <script>
+        var loclength = 0;
+        var wwidth = $(window).width();
+        var reponame = new Set();
+        var uniqueuser = new Set();
+        var allunicontri = [];
+        var alllocation = [];
+        var allcordinate = [];
+        reponame.add('openebs');
+        reponame.add('maya');
+        reponame.add('jiva');
+        reponame.add('elves');
+        reponame.add('mayaserver');
+        reponame.add('easy-jupyter');
+        reponame.add('longhorn');
+        reponame.add('mvol');
+        reponame.add('specs');
+        var outhtmlstart = '';
+        var outhtmlissue = '';
+        $('#ghapidata').html('<div id="loader"><img src="css/loader.gif" alt="loading..."></div>');
+        var repositories1;
+        var repo = 'https://api.github.com/repos/openebs/openebs?client_id=db5e3e3ede4e4174e0d6&client_secret=fdaad534cddc7373daf361a4d9d447ecdfb125ed'
+
+        function allcontibutor() {
+            var i = 0;
+            var contributor;
+
+
+            $.getJSON(repo, function(json) {
+                repodetails = json;
+
+                // console.log(Math.round(repodetails.stargazers_count / 1000, 2));
+                x = repodetails.stargazers_count / 1000;
+                var with2Decimals = x.toString().match(/^-?\d+(?:\.\d{0,1})?/)[0]
+                console.log(with2Decimals);
+                console.log(repodetails.open_issues_count);
+                // document.getElementById("star-count").value = with2Decimals
+                // document.getElementById("issue-count").value = repodetails.open_issues_count
+                $('#star-count').html(outhtmlstart + with2Decimals);
+                $('#issue-count').html(outhtmlissue + repodetails.open_issues_count);
+
+
+
+            });
+
+            for (let listrepo of reponame) {
+
+                var contbutorurl = 'https://api.github.com/repos/openebs/' + listrepo + '/contributors?client_id=db5e3e3ede4e4174e0d6&client_secret=fdaad534cddc7373daf361a4d9d447ecdfb125ed';
+                var outhtml2 = '<ul>';
+                $.getJSON(contbutorurl, function(json) {
+                    contributor = json;
+                    outputPageContent();
+
+                });
+
+                function outputPageContent() {
+
+                    if (contributor.length == 0) {
+                        outhtml2 = outhtml2 + '<p>No contibutors!</p></div>';
+                    } else {
+
+                        $.each(contributor, function(index) {
+
+                            if (!uniqueuser.has(contributor[index].login)) {
+
+                                var uobj = {
+                                    name: contributor[index].login,
+                                    imgurl: contributor[index].avatar_url + '&s=30'
+                                };
+                                allunicontri.push(i, uobj);
+                                uniqueuser.add(contributor[index].login);
+
+                            }
+                            i++;
+                        });
+
+                    }
+
+                    if (listrepo == 'openebs') {
+                        var contbutorurl = 'https://api.github.com/repos/openebs/' + listrepo + '/contributors?client_id=db5e3e3ede4e4174e0d6&client_secret=fdaad534cddc7373daf361a4d9d447ecdfb125ed&page=2';
+                        var outhtml2 = '<ul>';
+                        $.getJSON(contbutorurl, function(json) {
+                            contributor = json;
+                            outputPageContent();
+
+                        });
+                    }
+                }
+
+            }
+        }
+
+        allcontibutor();
+
+        function bcrousel() {
+
+            // var openebscontri;
+            // if ($(window).width() <= 360) {
+            //     openebscontri = 48;
+            // } else if ($(window).width() <= 480) {
+            //     openebscontri = 60;
+            // } else if ($(window).width() < 600) {
+            //     openebscontri = 37;
+            // } else if ($(window).width() <= 1200) {
+            //     openebscontri = 40;
+
+            // } else if ($(window).width() < 1536) {
+            //     openebscontri = 45;
+            // } else {
+            //     openebscontri = 50;
+            // }
+
+            // var p = 0;
+            var outhtmlb = '';
+            // outhtmlb = outhtmlb + '<div id="carouselExampleControls1" class="carousel slide " data-ride="carousel" style="display:flex;justify-content:center;">';
+            // outhtmlb = outhtmlb + '<div class="carousel-inner mycarousel" role="listbox" >';
+            // outhtmlb = outhtmlb + '<div class="carousel-item active " style="">';
+
+            for (var index = 1; index < allunicontri.length; index = index + 2) {
+
+                outhtmlb = outhtmlb + '<img class="pimg" src="' + allunicontri[index].imgurl + '" alt="' + allunicontri[index].name + '" title="' + allunicontri[index].name + '" style="border-radius:50%;"/>';
+                // console.log(openebscontri);
+                //     p++;
+                // } else {
+                //     outhtmlb = outhtmlb + '</div><div class="carousel-item " style="">'
+                //     p = 0;
+                // }
+
+            }
+            $('#contibutorslist2').html(outhtmlb + '');
+        }
+
+
+
+        setTimeout(function() {
+            // for (let item of uniqueuser) {
+            //     var userurl = 'https://api.github.com/users/' + item + '?client_id=db5e3e3ede4e4174e0d6&client_secret=fdaad534cddc7373daf361a4d9d447ecdfb125ed';
+            //     var location1;
+            //     $.getJSON(userurl, function(json) {
+            //         location1 = json.location
+
+            //         alllocation.push(location1);
+            //     });
+
+            // }
+            bcrousel();
+        }, 3000);
+
+        // setTimeout(function() {
+        //     var outhtmlloc = '';
+        //     for (let item of alllocation) {
+
+        //         latilogurl = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + item + '&key=AIzaSyC4O9P43xMKBg7iQV4RTS9HoEnRQjqvDsY'
+        //         var loc;
+
+        //         $.getJSON(latilogurl, function(json) {
+        //             loc = json;
+        //             var obj = {
+        //                 lat: loc.results[0].geometry.location.lat,
+        //                 lng: loc.results[0].geometry.location.lng
+        //             }
+        //             outhtmlloc = outhtmlloc + '{ lat:' + loc.results[0].geometry.location.lat + ', lng:' + loc.results[0].geometry.location.lng + '},';
+        //             allcordinate.push(obj);
+        //             console.log(outhtmlloc);
+        //         });
+
+        //         loclength++;
+
+        //     }
+        //     $('#displayloc').html(outhtmlloc);
+
+        // }, 6000);
+
+
+        // setTimeout(function() {
+
+
+
+
+        //     console.log(loclength);
+        //     console.log(all.length);
+        // }, 10000)
+
+
+        function requestJSON(url, callback) {
+            $.ajax({
+                url: url,
+                complete: function(xhr) {
+                    callback.call(null, xhr.responseJSON);
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

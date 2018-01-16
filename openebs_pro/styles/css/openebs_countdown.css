@@ -548,8 +548,9 @@
         
         .icbtn .btn-option {
             background-color: #00bbb6;
-            border-top-left-radius: 0.2em;
-            border-bottom-left-radius: 0.2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .icbtn .btn-option .enc-btn {
@@ -570,6 +571,7 @@
             flex-direction: column;
             justify-content: center;
             color: white;
+            align-items: center;
         }
         
         .icbtn .btn-option .enc-btn .box-btn .fnt3 {
@@ -2147,6 +2149,9 @@
                 border-top-left-radius: 0;
                 border-bottom-left-radius: 0;
                 margin-top: 3rem;
+            }
+            .f-mb {
+                display: flex;
             }
             .icbtn .btn-option .enc-btn {
                 padding-left: 0;
