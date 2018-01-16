@@ -15,10 +15,19 @@ env:
   - KUBE_DEPLOYMENT_CONTAINER_NAME=openebs
   - PATH=$PATH:${HOME}/google-cloud-sdk/bin
   - COMMIT=${TRAVIS_COMMIT::6}
+before_install:
+  - stty cols 80
 dist: trusty
-sudo: false
+sudo: required
 services:
   - docker
+addons:
+  firefox: latest
+  apt:
+    sources:
+    - google-chrome
+    packages:
+    - google-chrome-stable fluxbox
 before_script:
   - gcloud version || true
   - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; export
@@ -27,6 +36,10 @@ before_script:
   - gcloud --quiet version
   - gcloud --quiet components update
   - gcloud --quiet components update kubectl
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - sleep 3
+  - fluxbox >/dev/null 2>&1 &
 jobs:
   include:
     - stage: build
