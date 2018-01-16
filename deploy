@@ -1,3 +1,4 @@
+COMMIT=${TRAVIS_COMMIT::6}
 gcloud auth activate-service-account --key-file "${GOOGLE_APPLICATION_CREDENTIALS}"
 gcloud container clusters get-credentials flux-baremetal-cluster --zone us-central1-a --project strong-eon-153112
 curl -L https://github.com/weaveworks/flux/releases/download/1.1.0/fluxctl_linux_amd64 -o fluxctl
@@ -8,4 +9,4 @@ fluxpod=$(kubectl get pod -l name=flux -o name | awk -F / '{ print $2; }')
 echo $fluxpod
 export FLUX_URL="http://localhost:10080/api/flux"
 bash -c "kubectl port-forward $fluxpod 10080:3030" & sleep 10
-bash -c "fluxctl automate --controller=default:deployment/stage-openebs"
+bash -c "fluxctl release --controller=default:deployment/stage-openebs --update-image=avneetsingh/openebs-website:$COMMIT"
