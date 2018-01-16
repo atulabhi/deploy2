@@ -3,6 +3,14 @@ language: node_js
 node_js: stable
 env:
   global:
+  - GOOGLE_APPLICATION_CREDENTIALS="${PWD}/client-secret.json"
+  - PROJECT_NAME_STG=K8s-Demo
+  - CLUSTER_NAME_STG=flux-baremetal-cluster
+  - CLOUDSDK_COMPUTE_ZONE=us-central1-a
+  - DOCKER_IMAGE_NAME=avneetsingh/travis
+  - KUBE_DEPLOYMENT_NAME=openebs
+  - KUBE_DEPLOYMENT_CONTAINER_NAME=openebs
+  - PATH=$PATH:${HOME}/google-cloud-sdk/bin
   - COMMIT=${TRAVIS_COMMIT::6}
 before_install:
   - stty cols 80
