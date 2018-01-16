@@ -1,6 +1,6 @@
 # openebs-website
 
-# Deployement details
+## Deployement details
 
 We are running an ingress service at 35.193.106.198 on GKE.
 
