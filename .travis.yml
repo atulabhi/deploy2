@@ -41,7 +41,7 @@ before_script:
   - npm install
   - npm install -g @angular/cli
 script:
-  - build --prod
+  - ng build --prod
   - npm run build -- --prod --environment $env
   - cd openebs-app
 after_success:
