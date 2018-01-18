@@ -43,10 +43,10 @@ before_script:
 script:
   - ng build --prod
   #- npm run build -- --prod --environment $env
-  - cd openebs-app
+  - cd ..
 after_success:
   - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then export REPO=avneetsingh/openebs-website;
-       cd openebs-app;
+       cd ..;
        docker login -u "$DOCKER_USER" -p "$DOCKER_PASS" && docker build -t $REPO:$COMMIT . && docker push $REPO; 
     fi
   #- cd ..
