@@ -37,9 +37,11 @@ before_script:
   - gcloud --quiet version
   - gcloud --quiet components update
   - gcloud --quiet components update kubectl
+  - cd openebs-app/src/app 
+  - npm install
   - npm install -g @angular/cli
 script:
-  - cd openebs-app/src/app && npm install && build --prod
+  - build --prod
   - npm run build -- --prod --environment $env
   - cd openebs-app
 after_success:
