@@ -12,20 +12,20 @@ env:
   - KUBE_DEPLOYMENT_CONTAINER_NAME=openebs
   - PATH=$PATH:${HOME}/google-cloud-sdk/bin
   - COMMIT=${TRAVIS_COMMIT::7}
-before_install:
-  - stty cols 80
-branches:
-  only:
-  - master
-  - openssl aes-256-cbc -K $encrypted_1c66bdd57eb0_key -iv $encrypted_1c66bdd57eb0_iv
-    -in client-secret.json.enc -out client-secret.json -d
+#before_install:
+#  - stty cols 80
+#branches:
+#  only:
+#  - master
+#  - openssl aes-256-cbc -K $encrypted_1c66bdd57eb0_key -iv $encrypted_1c66bdd57eb0_iv
+#    -in client-secret.json.enc -out client-secret.json -d
 dist: trusty
 sudo: required
 services:
   - docker
 before_install:
   - rm -rf node_modules
-  - rm package-lock.json
+ # - rm package-lock.json
   - npm install
   - npm install -g @angular/cli
 addons:
