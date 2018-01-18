@@ -45,9 +45,10 @@ before_script:
   #- sleep 3
   #- fluxbox >/dev/null 2>&1 &
 script:
-  - cd openebs-app
+  - cd openebs-app/src/app
   #- npm run build -- --prod --environment $env
   - ng build --prod
+  - cd openebs-app
 after_success:
   - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then export REPO=avneetsingh/openebs-website;
        docker login -u "$DOCKER_USER" -p "$DOCKER_PASS" && docker build -t $REPO:$COMMIT . && docker push $REPO; 
