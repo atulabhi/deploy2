@@ -1,6 +1,6 @@
 filter_secrets: false
 language: node_js
-node_js: 8.6
+node_js: stable
 env:
   global:
   - GOOGLE_APPLICATION_CREDENTIALS="${PWD}/client-secret.json"
