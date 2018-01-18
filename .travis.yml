@@ -24,7 +24,7 @@ sudo: required
 services:
   - docker
 before_install:
-  - npm install
+  - npm install -g @angular/cli
 addons:
   firefox: latest
   apt:
@@ -46,7 +46,8 @@ before_script:
   #- fluxbox >/dev/null 2>&1 &
 script:
   - cd openebs-app
-  - npm run build -- --prod --environment $env
+  #- npm run build -- --prod --environment $env
+  - ng build --prod
 after_success:
   - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then export REPO=avneetsingh/openebs-website;
        docker login -u "$DOCKER_USER" -p "$DOCKER_PASS" && docker build -t $REPO:$COMMIT . && docker push $REPO; 
