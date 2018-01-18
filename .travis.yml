@@ -24,6 +24,9 @@ sudo: required
 services:
   - docker
 before_install:
+  - rm -rf node_modules
+  - rm package-lock.json
+  - npm install
   - npm install -g @angular/cli
 addons:
   firefox: latest
