@@ -23,6 +23,8 @@ dist: trusty
 sudo: required
 services:
   - docker
+before_install:
+  - npm install
 addons:
   firefox: latest
   apt:
