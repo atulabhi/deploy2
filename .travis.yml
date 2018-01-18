@@ -1,6 +1,6 @@
 filter_secrets: false
 language: node_js
-node_js: stable
+node_js: 8.6
 env:
   global:
   - GOOGLE_APPLICATION_CREDENTIALS="${PWD}/client-secret.json"
@@ -23,6 +23,8 @@ dist: trusty
 sudo: required
 services:
   - docker
+before_install:
+  - npm install -g @angular/cli
 addons:
   firefox: latest
   apt:
@@ -38,17 +40,19 @@ before_script:
   - gcloud --quiet version
   - gcloud --quiet components update
   - gcloud --quiet components update kubectl
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - sleep 3
-  - fluxbox >/dev/null 2>&1 &
+  #- export DISPLAY=:99.0
+  #- sh -e /etc/init.d/xvfb start
+  #- sleep 3
+  #- fluxbox >/dev/null 2>&1 &
+script:
+  - cd openebs-app
+  - npm run build -- --prod --environment $env
 after_success:
   - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then export REPO=avneetsingh/openebs-website;
-        cd openebs-app;
-        docker login -u "$DOCKER_USER" -p "$DOCKER_PASS" && docker build -t $REPO:$COMMIT . && docker push $REPO; 
+       docker login -u "$DOCKER_USER" -p "$DOCKER_PASS" && docker build -t $REPO:$COMMIT . && docker push $REPO; 
     fi
-  - cd ..
-  - ./deploy
+  #- cd ..
+  #- ./deploy
  # - ./trigger-dependent-build
 notifications:
   email:
