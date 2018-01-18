@@ -42,7 +42,7 @@ before_script:
   - npm install -g @angular/cli
 script:
   - ng build --prod
-  - npm run build -- --prod --environment $env
+  #- npm run build -- --prod --environment $env
   - cd openebs-app
 after_success:
   - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then export REPO=avneetsingh/openebs-website;
