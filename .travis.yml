@@ -12,8 +12,8 @@ env:
   - KUBE_DEPLOYMENT_CONTAINER_NAME=openebs
   - PATH=$PATH:${HOME}/google-cloud-sdk/bin
   - COMMIT=${TRAVIS_COMMIT::7}
-#before_install:
-#  - stty cols 80
+before_install:
+  - npm install
 #branches:
 #  only:
 #  - master
@@ -38,7 +38,6 @@ before_script:
   - gcloud --quiet version
   - gcloud --quiet components update
   - gcloud --quiet components update kubectl
-  - npm install
   - npm install -g @angular/cli
 script:
   - cd openebs-app/src/app && ng build --prod
