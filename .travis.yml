@@ -1,57 +1,10 @@
-filter_secrets: false
-language: node_js
-node_js: stable
-env:
-  global:
-  - GOOGLE_APPLICATION_CREDENTIALS="${PWD}/client-secret.json"
-  - PROJECT_NAME_STG=K8s-Demo
-  - CLUSTER_NAME_STG=flux-baremetal-cluster
-  - CLOUDSDK_COMPUTE_ZONE=us-central1-a
-  - DOCKER_IMAGE_NAME=avneetsingh/travis
-  - KUBE_DEPLOYMENT_NAME=openebs
-  - KUBE_DEPLOYMENT_CONTAINER_NAME=openebs
-  - PATH=$PATH:${HOME}/google-cloud-sdk/bin
-  - COMMIT=${TRAVIS_COMMIT::7}
-#before_install:
- # branches:
-#  only:
-#  - master
-#  - openssl aes-256-cbc -K $encrypted_1c66bdd57eb0_key -iv $encrypted_1c66bdd57eb0_iv
-#    -in client-secret.json.enc -out client-secret.json -d
-dist: trusty
-sudo: required
-services:
-  - docker 
-addons:
-  firefox: latest
-  apt:
-    sources:
-    - google-chrome
-    packages:
-    - google-chrome-stable fluxbox
-before_script:
-  - gcloud version || true
-  - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf $HOME/google-cloud-sdk; export
-    CLOUDSDK_CORE_DISABLE_PROMPTS=1; curl https://sdk.cloud.google.com | bash; fi
-  - source /home/travis/google-cloud-sdk/path.bash.inc
-  - gcloud --quiet version
-  - gcloud --quiet components update
-  - gcloud --quiet components update kubectl
-  - cd openebs-app/src/app 
-  - npm install
-  - npm install -g @angular/cli
-script:
-  - ng build --prod
-  #- npm run build -- --prod --environment $env
-  - cd ..
-after_success:
-  - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then export REPO=avneetsingh/openebs-website;
-       cd ..;
-       docker login -u "$DOCKER_USER" -p "$DOCKER_PASS" && docker build -t $REPO:$COMMIT . && docker push $REPO; 
-    fi
-  #- cd ..
-  #- ./deploy
- # - ./trigger-dependent-build
-notifications:
-  email:
+language: go
 
+go:
+  - "1.x"
+  - "1.8"
+  - "1.10.x"
+script:
+  - go version 
+  - which go 
+  - pwd
